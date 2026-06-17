@@ -1,0 +1,28 @@
+---
+description: DayForge web app conventions
+globs:
+  - src/**/*
+  - supabase/**/*
+---
+
+# DayForge
+
+Goal-to-task productivity app. React + Vite + Supabase.
+
+## Conventions
+
+- Use `supabase` from `src/lib/supabaseClient.ts` — never instantiate a second client
+- All user data queries must filter by `user_id` (or `profiles.id = auth user id`)
+- Auth state via `useAuth()` hook in `src/lib/hooks/useAuth.ts`
+- Styling: CSS variables in `index.css`, `glass-panel` class, inline styles for layout (existing pattern)
+- Icons: `lucide-react`
+
+## Data tables
+
+`profiles`, `goals`, `tasks`, `notifications` — see `PROJECT.md` and `supabase/migrations/`
+
+## Before adding features
+
+1. Check `PROJECT.md` feature status
+2. Add RLS-safe queries (`.eq('user_id', user.id)`)
+3. Update `PROJECT.md` when completing a milestone
